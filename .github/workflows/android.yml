@@ -14,12 +14,13 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - uses: android-actions/setup-android@v3
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.13'
-      - name: Install SDK
-        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+      - name: Install Android SDK 36
+        run: |
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          sdkmanager --install "platforms;android-36" "build-tools;36.0.0"
       - name: Build APK and unsigned AAB
         run: gradle --no-daemon assembleDebug bundleRelease
       - uses: actions/upload-artifact@v4
