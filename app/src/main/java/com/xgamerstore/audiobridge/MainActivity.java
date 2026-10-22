@@ -79,6 +79,11 @@ public final class MainActivity extends Activity {
         ScrollView scroll=new ScrollView(this);scroll.setFillViewport(true);scroll.setBackgroundColor(BACK);
         LinearLayout root=stack();root.setPadding(dp(20),dp(30),dp(20),dp(36));scroll.addView(root);setContentView(scroll);
         add(root,text("◉ AUDIOBRIDGE",14,MINT,true),0);
+        Button bluetoothBridge=button("🎧 Bluetooth → jack (dva telefony)",true);
+        bluetoothBridge.setOnClickListener(v->startActivity(new Intent(this,BridgeActivity.class)));
+        add(root,bluetoothBridge,18);
+        add(root,text("Pro příjem Bluetooth zvuku do kabelových sluchátek použij režim výše. Na druhém telefonu musí být také AudioBridge.",13,MUTED,false),10);
+
         add(root,text("Zvuk bez hranic.",30,WHITE,true),14);
         add(root,text("USB / mikrofon → reproduktor nebo sluchátka",14,MUTED,false),6);
         LinearLayout summary=card(root,"PŘENOS ZVUKU","Stav spojení");
