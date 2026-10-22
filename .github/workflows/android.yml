@@ -20,7 +20,8 @@ jobs:
       - name: Install Android SDK 36
         run: |
           echo "ANDROID_HOME=$ANDROID_HOME"
-          sdkmanager --install "platforms;android-36" "build-tools;36.0.0"
+          SDKMANAGER=$(find "$ANDROID_HOME/cmdline-tools" -type f -name sdkmanager | head -n 1)
+          "$SDKMANAGER" --sdk_root="$ANDROID_HOME" --install "platforms;android-36" "build-tools;36.0.0"
       - name: Build APK and unsigned AAB
         run: gradle --no-daemon assembleDebug bundleRelease
       - uses: actions/upload-artifact@v4
